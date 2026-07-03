@@ -2,6 +2,7 @@
 
 from mock_stock_broker_driver import MockStockBrokerDriver
 
+
 def test_login():
     driver = MockStockBrokerDriver()
 
@@ -28,11 +29,17 @@ def test_sell_request():
     assert stock.get_stock_price() == 180000
     assert stock.quantity == 2
 
+def test_set_price():
+    driver = MockStockBrokerDriver()
+    driver.set_prices("005930", 73000)
+
+    assert driver.get_price("005930") == 70000
+    assert driver.get_price("005930") == 71000
+    assert driver.get_price("005930") == 72000
+    assert driver.get_price("005930") == 73000
 
 def test_get_price():
     driver = MockStockBrokerDriver()
-
-    driver.set_prices("005930", [70000, 71000, 72000])
 
     assert driver.get_price("005930") == 70000
     assert driver.get_price("005930") == 71000
