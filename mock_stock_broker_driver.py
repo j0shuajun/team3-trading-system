@@ -1,4 +1,9 @@
 
+class Stock:
+    def __init__(self, stock_code='', prices=None):
+        self.stock_code = stock_code
+        self.prices = prices
+
 class MockStockBrokerDriver():
     def __init__(self):
         self.login_id = ''
@@ -12,6 +17,7 @@ class MockStockBrokerDriver():
         self.sell_price = 0
         self.sell_quantity = 0
 
+        self.stocks = []
 
     def login(self, login_id, login_password):
         self.login_id = login_id
@@ -28,4 +34,11 @@ class MockStockBrokerDriver():
         self.sell_quantity = quantity
 
     def set_prices(self, stock_code, prices):
-        pass
+        self.stocks.append(Stock(stock_code, prices))
+
+    def get_price(self, stock_code):
+        for stock in self.stocks:
+            if stock.stock_code == stock_code:
+                return stock.prices.pop(0)
+
+        return 0
