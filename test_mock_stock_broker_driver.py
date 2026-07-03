@@ -2,7 +2,6 @@
 
 from mock_stock_broker_driver import MockStockBrokerDriver
 
-
 def test_login():
     driver = MockStockBrokerDriver()
 
