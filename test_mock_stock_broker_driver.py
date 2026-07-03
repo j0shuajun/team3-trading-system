@@ -13,22 +13,20 @@ def test_login():
 
 def test_buy_request():
     driver = MockStockBrokerDriver()
+    stock = driver.buy("005930", 70000, 3)
 
-    driver.buy("005930", 70000, 3)
-
-    assert driver.buy_stock_code == "005930"
-    assert driver.buy_price == 70000
-    assert driver.buy_quantity == 3
+    assert stock.stock_code == "005930"
+    assert stock.get_stock_price() == 70000
+    assert stock.quantity == 3
 
 
 def test_sell_request():
     driver = MockStockBrokerDriver()
+    stock = driver.sell("000660", 180000, 2)
 
-    driver.sell("000660", 180000, 2)
-
-    assert driver.sell_stock_code == "000660"
-    assert driver.sell_price == 180000
-    assert driver.sell_quantity == 2
+    assert stock.stock_code == "000660"
+    assert stock.get_stock_price() == 180000
+    assert stock.quantity == 2
 
 
 def test_get_price():
