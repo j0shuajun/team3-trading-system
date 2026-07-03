@@ -8,6 +8,11 @@ class MockStockBrokerDriver():
         self.buy_price = 0
         self.buy_quantity = 0
 
+        self.sell_stock_code = ''
+        self.sell_price = 0
+        self.sell_quantity = 0
+
+
     def login(self, login_id, login_password):
         self.login_id = login_id
         self.login_password = login_password
@@ -18,7 +23,9 @@ class MockStockBrokerDriver():
         self.buy_quantity = quantity
 
     def sell(self, stock_code, price, quantity):
-        pass
+        self.sell_stock_code = stock_code
+        self.sell_price = price
+        self.sell_quantity = quantity
 
     def set_prices(self, stock_code, prices):
         pass
