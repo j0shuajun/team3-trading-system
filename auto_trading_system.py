@@ -1,5 +1,7 @@
 from enum import Enum
 
+from mock_stock_broker_driver import MockStockBrokerDriver
+
 
 class StocBroker(Enum):
     KiwerStock = "kiwer"
@@ -21,7 +23,7 @@ class AutoTradingSystem:
         if name == StocBroker.NemoStock.value:
             pass
         if name == StocBroker.MockStock.value:
-            pass
+            self._stock_broker = MockStockBrokerDriver()
 
     def login(self, id: str, pw: str):
         if len(id) == 0 or len(pw) == 0:
