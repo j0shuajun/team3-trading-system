@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class StockerBroker(Enum):
+class StocBroker(Enum):
     KiwerStock = "kiwer"
     NemoStock = "nemo"
     MockStock = "mock"
@@ -9,14 +9,18 @@ class StockerBroker(Enum):
 
 class AutoTradingSystem:
     def __init__(self):
-        self._stocker_broker = None
+        self._stock_broker = None
 
-    def select_stocker_broker(self, name: str):
-        if name == StockerBroker.KiwerStock.value:
+    @property
+    def stock_broker_driver(self):
+        return self._stock_broker
+
+    def select_stock_broker(self, name: str):
+        if name == StocBroker.KiwerStock.value:
             pass
-        if name == StockerBroker.NemoStock.value:
+        if name == StocBroker.NemoStock.value:
             pass
-        if name == StockerBroker.MockStock.value:
+        if name == StocBroker.MockStock.value:
             pass
 
     def login(self, id: str, pw: str):

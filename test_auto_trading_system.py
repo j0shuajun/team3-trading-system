@@ -1,5 +1,4 @@
 from auto_trading_system import AutoTradingSystem
-# from mock_stock_broker_driver import MockStockBrokerDriver
 
 
 def test_login(mocker):
