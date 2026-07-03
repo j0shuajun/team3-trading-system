@@ -16,10 +16,15 @@ class AutoTradingSystem(StubAutoTradingSystem):
         price = self._stocker_broker.get_price(stock_code)
         for _ in range(2):
             current_price = self._stocker_broker.get_price(stock_code)
-            if trend == "rising" and price >= current_price:
-                return
-            if trend == "fall" and price <= current_price:
-                return
+            if not self._is_rising_or_fall_trend(price, current_price, trend):
+                return None
             price = current_price
             time.sleep(0.2)
         return price
+
+    def _is_rising_or_fall_trend(self, prev_price, current_price, trend: str) -> bool:
+        if trend == 'rising':
+            return prev_price < current_price
+        elif trend == 'fall':
+            return prev_price > current_price
+        return False
