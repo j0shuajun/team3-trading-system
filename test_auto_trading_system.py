@@ -1,9 +1,9 @@
 from auto_trading_system import AutoTradingSystem
-from mock_stock_broker_driver import MockStockBrokerDriver
+# from mock_stock_broker_driver import MockStockBrokerDriver
 
 
-def test_login():
-    driver = MockStockBrokerDriver()
+def test_login(mocker):
+    driver = mocker.Mock()
     system = AutoTradingSystem()
 
     system.select_stock_broker(driver)
@@ -13,8 +13,8 @@ def test_login():
     assert driver.login_password == "password"
 
 
-def test_select_stock_broker():
-    driver = MockStockBrokerDriver()
+def test_select_stock_broker(mocker):
+    driver = mocker.Mock()
     system = AutoTradingSystem()
 
     system.select_stock_broker(driver)
@@ -22,8 +22,8 @@ def test_select_stock_broker():
     assert system.stock_broker_driver == driver
 
 
-def test_buy_stock():
-    driver = MockStockBrokerDriver()
+def test_buy_stock(mocker):
+    driver = mocker.Mock()
     system = AutoTradingSystem()
 
     system.select_stock_broker(driver)
@@ -34,8 +34,8 @@ def test_buy_stock():
     assert driver.buy_quantity == 3
 
 
-def test_sell_stock():
-    driver = MockStockBrokerDriver()
+def test_sell_stock(mocker):
+    driver = mocker.Mock()
     system = AutoTradingSystem()
 
     system.select_stock_broker(driver)
@@ -46,8 +46,8 @@ def test_sell_stock():
     assert driver.sell_quantity == 2
 
 
-def test_get_price():
-    driver = MockStockBrokerDriver()
+def test_get_price(mocker):
+    driver = mocker.Mock()
     system = AutoTradingSystem()
     driver.set_prices("005930", [70000])
 
