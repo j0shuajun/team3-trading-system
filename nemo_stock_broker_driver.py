@@ -2,7 +2,7 @@ from stock_broker_driver import StockBrokerDriver
 from nemo_api import NemoAPI
 
 
-class NemoStockBrokerAdapter(StockBrokerDriver):
+class NemoStockBrokerDriver(StockBrokerDriver):
     def __init__(self):
         self.api = NemoAPI()
 
