@@ -1,8 +1,8 @@
-from stock_brocker_driver import StockBrockerDriver
+from stock_broker_driver import StockBrokerDriver
 from kiwer_api import KiwerAPI
 
 
-class KiwerStockBrokerDriver(StockBrockerDriver):
+class KiwerStockBrokerAdapter(StockBrokerDriver):
     def __init__(self):
         self.api = KiwerAPI()
 

@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class StockBrockerDriver(ABC):
+class StockBrokerDriver(ABC):
 
     @abstractmethod
     def login(self, user_id: str, password: str) -> None:
