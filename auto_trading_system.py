@@ -30,21 +30,25 @@ class AutoTradingSystem:
             raise ValueError
 
         print(f"{id} 로그인 시도..")
+        return self._stock_broker.login(id, pw)
 
     def buy(self, code: str, price: int, cnt: int):
         if len(code) == 0 or price <= 0 or cnt <= 0:
             raise ValueError
 
         print(f"{code} 종목 {price}원*{cnt}주 매수 시도..")
+        return self._stock_broker.buy(code, price, cnt)
 
     def sell(self, code: str, price: int, cnt: int):
         if len(code) == 0 or price <= 0 or cnt <= 0:
             raise ValueError
 
         print(f"{code} 종목 {price}원*{cnt}주 매도 시도..")
+        return self._stock_broker.sell(code, price, cnt)
 
     def get_price(self, code: str):
         if len(code) == 0:
             raise ValueError
 
         print(f"{code} 종목 가격 확인..")
+        return self._stock_broker.get_price(code)

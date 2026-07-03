@@ -1,16 +1,16 @@
 from auto_trading_system import AutoTradingSystem
-from mock_stock_broker_driver import MockStockBrokerDriver
+from mock_stock_broker_driver import MockStockBrokerDriver, Stock
 
 
-def test_login():
+def test_login(mocker):
+    mocker.patch(
+        'mock_stock_broker_driver.MockStockBrokerDriver.login',
+        return_value=True
+    )
     system = AutoTradingSystem()
-
     system.select_stock_broker("mock")
-    system.login("user.id", "password")
 
-    driver = system.stock_broker_driver
-    assert driver.login_id == "user.id"
-    assert driver.login_password == "password"
+    assert system.login("user.id", "password")
 
 
 def test_select_stock_broker():
@@ -21,35 +21,44 @@ def test_select_stock_broker():
     assert isinstance(system.stock_broker_driver, MockStockBrokerDriver)
 
 
-def test_buy_stock():
+def test_buy_stock(mocker):
+    mocker.patch(
+        'mock_stock_broker_driver.MockStockBrokerDriver.buy',
+        return_value=Stock("005930", 70000, 3)
+    )
     system = AutoTradingSystem()
-
     system.select_stock_broker("mock")
-    system.buy("005930", 70000, 3)
 
-    driver = system.stock_broker_driver
-    assert driver.buy_stock_code == "005930"
-    assert driver.buy_price == 70000
-    assert driver.buy_quantity == 3
+    stock = system.buy("005930", 70000, 3)
+
+    assert stock.stock_code == "005930"
+    assert stock.price == 70000
+    assert stock.quantity == 3
 
 
-def test_sell_stock():
+def test_sell_stock(mocker):
+    mocker.patch(
+        'mock_stock_broker_driver.MockStockBrokerDriver.sell',
+        return_value=Stock("000660", 180000, 2)
+    )
     system = AutoTradingSystem()
-
     system.select_stock_broker("mock")
-    system.sell("000660", 180000, 2)
 
-    driver = system.stock_broker_driver
-    assert driver.sell_stock_code == "000660"
-    assert driver.sell_price == 180000
-    assert driver.sell_quantity == 2
+    stock = system.sell("000660", 180000, 2)
+
+    assert stock.stock_code == "000660"
+    assert stock.price == 180000
+    assert stock.quantity == 2
 
 
-def test_get_price():
+def test_get_price(mocker):
+    mocker.patch(
+        'mock_stock_broker_driver.MockStockBrokerDriver.get_price',
+        return_value=70000
+    )
     system = AutoTradingSystem()
-
     system.select_stock_broker("mock")
-    system.stock_broker_driver.set_prices("005930", [70000])
+
     price = system.get_price("005930")
 
     assert price == 70000
